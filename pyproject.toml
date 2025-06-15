@@ -1,0 +1,59 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "pems_regression"
+authors = [
+    {name = "Viacheslav Borovitskiy", email = "viacheslav.borovitskiy@gmail.com"},
+]
+description="A benchmark for node regression derived from the California PeMS data."
+readme = "README.md"
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "numpy",
+    "networkx",
+    "pandas",
+    "geopandas",
+    "torch",
+    "geometric_kernels",
+    "backends",
+    "gpytorch",
+    "torch_geometric",
+    "pyro-ppl",
+    "osmnx",
+    "contextily",
+    "tables",
+]
+version="1.0"
+
+[project.urls]
+Home = "https://github.com/vabor112/pems_regression"
+
+[tool.isort]
+profile = "black"
+skip_glob = [
+    "pems_regression/__init__.py",
+]
+known_third_party = [
+    "lab",
+]
+
+[tool.mypy]
+ignore_missing_imports = true
+strict_optional = false
+allow_redefinition = true
+
+
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311']
