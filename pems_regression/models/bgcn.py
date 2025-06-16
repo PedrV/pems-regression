@@ -100,7 +100,15 @@ class BayesianGCNModel(PyroModule):
 
 
 def get_bnn_predictions_stds_and_test_cov(
-    layer_width, num_intermediate_layers, pyg_data, xs_test, ys, train_mask
+    layer_width,
+    num_intermediate_layers,
+    *,
+    pyg_data,
+    xs_test,
+    ys,
+    train_mask,
+    num_samples=100,
+    num_chains=1,
 ):
 
     model = BayesianGCNModel(
@@ -108,7 +116,7 @@ def get_bnn_predictions_stds_and_test_cov(
     )
     model.double()
 
-    mcmc = MCMC(NUTS(model), num_samples=100, num_chains=1)
+    mcmc = MCMC(NUTS(model), num_samples=num_samples, num_chains=num_chains)
 
     # Run MCMC
     processed_ys = torch.nan_to_num(
