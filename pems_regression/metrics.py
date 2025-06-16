@@ -80,7 +80,7 @@ def diag_cov_nll(mean_vector, stds_vector, observation):
     return -distribution.log_prob(observation)
 
 
-def print_metrics(results_list, xs_train, ys_train, xs_test):
+def print_metrics(results_list, *, xs_train, ys_train, xs_test, ys_test, original_std):
     num_experiment_repetitions = len(results_list)
 
     rmse_list = np.zeros((num_experiment_repetitions,))
@@ -95,11 +95,19 @@ def print_metrics(results_list, xs_train, ys_train, xs_test):
     for i in range(num_experiment_repetitions):
         pred, std, test_cov = results_list[i]
 
-        rmse_list[i] = rmse(pred[xs_test])
-        rmse_train_list[i] = rmse(pred[xs_train], ys_train)
+        rmse_list[i] = rmse(
+            pred[xs_test], observation=ys_test, original_std=original_std
+        )
+        rmse_train_list[i] = rmse(
+            pred[xs_train], observation=ys_train, original_std=original_std
+        )
         if (std is not None) and (test_cov is not None):
-            diag_nll_list[i] = diag_cov_nll(pred[xs_test], std[xs_test])
-            full_nll_list[i] = full_cov_nll(pred[xs_test], test_cov)
+            diag_nll_list[i] = diag_cov_nll(
+                pred[xs_test], std[xs_test], observation=ys_test
+            )
+            full_nll_list[i] = full_cov_nll(
+                pred[xs_test], test_cov, observation=ys_test
+            )
         else:
             no_uncertainty = True
 

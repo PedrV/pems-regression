@@ -43,7 +43,7 @@ def cut(line, distance):
             ]
 
 
-def load_PEMS(raw_data_path: str):
+def load_PEMS(raw_data_path: str):  # noqa: C901
     # Use a temp directory for extraction
     tmpdir = tempfile.mkdtemp()
 

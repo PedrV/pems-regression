@@ -8,7 +8,7 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 from pems_regression.utils import dcn
 
 
-def plot_PEMS(
+def plot_PEMS(  # noqa: C901
     G,
     vals,
     vertex_id,
@@ -126,14 +126,14 @@ def plot_PEMS(
 
     if cax is not None:
         if cut_colormap:
-            cbar = fig.colorbar(
+            _ = fig.colorbar(
                 mpl.cm.ScalarMappable(norm, cmap),
                 orientation="vertical",
                 extend="max",
                 cax=cax,
             )
         else:
-            cbar = fig.colorbar(
+            _ = fig.colorbar(
                 mpl.cm.ScalarMappable(norm, cmap), orientation="vertical", cax=cax
             )
         if filename is not None:

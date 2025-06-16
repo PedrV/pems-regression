@@ -1,7 +1,9 @@
+import numpy as np
 import pyro
 import pyro.distributions as dist
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from pyro.infer import MCMC, NUTS
 from pyro.infer.mcmc.util import predictive
 from pyro.nn import PyroModule, PyroSample
