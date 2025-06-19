@@ -58,7 +58,7 @@ class RandomWalkKernel(MaternKarhunenLoeveKernel):
 
 
 def get_gp_predictions_stds_and_test_cov(
-    kernel, train_iterations=200, *, xs, ys, xs_train, ys_train, xs_test
+    kernel, train_iterations=200, *, xs, xs_train, ys_train, xs_test, ys=None  # unused ys
 ):
     likelihood = gpytorch.likelihoods.GaussianLikelihood()
     likelihood.noise = torch.tensor(0.01)  # initialization of observation noise
