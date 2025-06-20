@@ -14,7 +14,7 @@ pip install git+https://github.com/vabor112/pems-regression.git
 
 ## Usage
 
-See the example notebooks (coming soon).
+See the example notebooks in the [notebooks](./notebooks) folder.
 
 ## Contributing
 
