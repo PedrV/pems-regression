@@ -13,10 +13,10 @@ class GCNModel(torch.nn.Module):
 
         self.first_layer = GCNConv(1, hidden_layer_size)
 
-        self.intermediate_layers = [
+        self.intermediate_layers = nn.ModuleList([
             GCNConv(hidden_layer_size, hidden_layer_size)
             for _ in range(num_intermediate_layers)
-        ]
+        ])
 
         self.last_layer = GCNConv(hidden_layer_size, 1)
 
